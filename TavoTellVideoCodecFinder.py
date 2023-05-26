@@ -17,5 +17,9 @@ def findFile(folder):
             if file_codec.stdout.strip() == 'h264':
                 print(f"{full_path}")
 
-# I call the function with a specific folder
-findFile("/media/tavo/XPG/AKB48")
+def main():
+    # I call the function with a specific folder
+    findFile("/media/tavo/XPG/AKB48")
+
+if __name__ == "__main__":
+    main()

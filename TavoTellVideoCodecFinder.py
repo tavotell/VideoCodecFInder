@@ -1,7 +1,8 @@
 import os
 import subprocess
+import argparse
 
-def findFile(folder):
+def findFile(folder,codec_list):
     # I take the files in specified folder and subfolders
     for path, folders, files in os.walk(folder):
         for file in files:
@@ -14,12 +15,23 @@ def findFile(folder):
                 text=True)
 
             # If codec is H264, print file full path in terminal
-            if file_codec.stdout.strip() == 'h264':
+            if file_codec.stdout.strip() in codec_list:
                 print(f"{full_path}")
 
 def main():
+    # Arguments are obtained from the terminal
+    parser = argparse.ArgumentParser(description="Tavo Tell's Video Codec Finder")
+
+    # I define the arguments
+    parser.add_argument('-folder', dest='search_folder', help='Search files in this folder and subfolders')
+    parser.add_argument('-codecs', dest='codec_list', action='append', help='List of codec to search. Eg: h264,h265, etc.')
+
+    # Parsing Arguments
+    args = parser.parse_args()
+    codec_list = [argument.split(',') for argument in args.codec_list][0]
+    
     # I call the function with a specific folder
-    findFile("/media/tavo/XPG/AKB48")
+    findFile(args.search_folder, codec_list)
 
 if __name__ == "__main__":
     main()

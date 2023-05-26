@@ -11,3 +11,8 @@ options:
                         Search files in this folder and subfolders
   -codecs CODEC_LIST    List of codec to search. Eg: h264,h265, etc.
 ```
+
+This script requires ffmpeg package installed:
+```
+sudo apt-get install ffmpeg
+```
